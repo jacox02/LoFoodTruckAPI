@@ -29,6 +29,6 @@ app.get("/api/", (req, res) => {
 app.use("/api/food/", controller);
 app.use("/api/users/", usercontroller);
 
-app.listen(port, () => {
-  console.log(`Listening on port ${port}`);
+app.listen(app.get("port"), () => {
+  console.log(`Service running on port ${app.get("port")}`);
 });

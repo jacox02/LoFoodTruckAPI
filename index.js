@@ -1,7 +1,6 @@
 const express = require("express");
 const morgan = require("morgan");
-const foodroutes = require("./Routes/food.routes");
-const userroutes = require("./routes/user.routes");
+const { controller, usercontroller } = require("./Routes/index");
 const cors = require("cors");
 const { json, urlencoded } = require("body-parser");
 
@@ -27,8 +26,8 @@ app.get("/api/", (req, res) => {
   res.send(true);
 });
 
-app.use("/api/food/", foodroutes);
-app.use("/api/users/", userroutes);
+app.use("/api/food/", controller);
+app.use("/api/users/", usercontroller);
 
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);

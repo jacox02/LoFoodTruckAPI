@@ -53,10 +53,12 @@ router.get("/restaurant/:restaurantid/information", async (req, res) => {
   let connection = mysql.createConnection(sqlremote);
   let receivedrestaurant = req.params.restaurantid;
   let query = `select restaurant_name, restaurant_address from Restaurants where restaurant_id = ${receivedrestaurant};`;
+  let restaurantInfo = {};
   connection.query(query, function (error, results, fields) {
-    res.send(results);
+    restaurantInfo = results;
     if (error) throw error;
   });
+  res.send(restaurantInfo);
   connection.end();
 });
 router.get("/restaurants/all", function (req, res) {

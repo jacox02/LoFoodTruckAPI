@@ -69,12 +69,13 @@ router.get("/restaurants/all", function (req, res) {
   });
   connection.end();
 });
+
 router.get("/:foodid", function (req, res) {
   let connection = mysql.createConnection(sqlremote);
   let receivedfood = req.params.foodid;
   let query = `call GetFoodInformation(${receivedfood});`;
   connection.query(query, function (error, results, fields) {
-    res.send(results);
+    res.send(results[0]);
     if (error) throw error;
   });
   connection.end();

@@ -52,13 +52,17 @@ router.get("/restaurant/:restaurantid", async (req, res) => {
 router.get("/restaurant/:restaurantid/information", async (req, res) => {
   let connection = mysql.createConnection(sqlremote);
   let receivedrestaurant = req.params.restaurantid;
-  let query = `select R.restaurant_id, R.restaurant_name, R.restaurant_address, R.restaurant_image, C.category_name from Restaurants R JOIN Categories C on R.restaurant_category_id = C.category_id where restaurant_id = ${receivedrestaurant};`;
+  let query = `select R.restaurant_id, R.restaurant_name, R.restaurant_address, R.restaurant_image, C.category_name from Restaurants R JOIN Categories C on R.restaurant_category_id = C.category_id where restaurant_id = ?; call GetAllFoodsFromRestaurant(?)`;
   let restaurantInfo = {};
-  connection.query(query, function (error, results, fields) {
-    res.send(results);
-    if (error) throw error;
-  });
-  // res.send(restaurantInfo);
+  connection.query(
+    query,
+    [parseInt(receivedrestaurant), parseInt(receivedrestaurant)],
+    function (error, results, fields) {
+      restaurantInfo = results;
+      res.send(restaurantInfo);
+      if (error) throw error;
+    }
+  );
   connection.end();
 });
 router.get("/restaurants/all", function (req, res) {

@@ -8,6 +8,7 @@ module.exports.sqlremote = {
   host: "sql5.freesqldatabase.com",
   user: "sql5432170",
   password: "fcxjjqiRbA",
+  multipleStatements: true,
   database: "sql5432170",
   port: "3306",
 };

@@ -1,6 +1,6 @@
 const express = require("express");
 const morgan = require("morgan");
-const foodroutes = require("./routes/index.routes");
+const foodroutes = require("./Routes/food.routes");
 const userroutes = require("./routes/user.routes");
 const cors = require("cors");
 const { json, urlencoded } = require("body-parser");
@@ -26,6 +26,7 @@ app.get("/", (req, res) => {
 app.get("/api/", (req, res) => {
   res.send(true);
 });
+
 app.use("/api/food/", foodroutes);
 app.use("/api/users/", userroutes);
 

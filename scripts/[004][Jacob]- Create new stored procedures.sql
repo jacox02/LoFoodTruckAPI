@@ -1,22 +1,7 @@
-# Stored procedure to get 10 random restaurants
-DELIMITER //
-CREATE PROCEDURE GetRandomRestaurant()
-	SELECT t.*
-FROM Restaurants AS t
-INNER JOIN
-    (SELECT ROUND(
-       RAND() *
-      (SELECT MAX(restaurant_id) FROM Restaurants )) AS id
-     ) AS x
-WHERE
-    t.restaurant_id
-        >= x.id
-LIMIT 10;
-DELIMITER ;
 
 # Stored procedure to get 10 random products
 DELIMITER //
-CREATE PROCEDURE GetRandomProducts()
+CREATE PROCEDURE GetRandomRestaurants()
 	SELECT t.*
 FROM Restaurants AS t
 INNER JOIN
@@ -41,7 +26,7 @@ INNER JOIN
       (SELECT MAX(restaurant_id) FROM Food )) AS id
      ) AS x
 WHERE
-    t.food_id
+    t.restaurant_id
         >= x.id
 LIMIT 10;
 DELIMITER ;

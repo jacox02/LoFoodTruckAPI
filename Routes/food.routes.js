@@ -61,7 +61,8 @@ router.get("/restaurant/:restaurantid/information", async (req, res) => {
 });
 router.get("/restaurants/all", function (req, res) {
   let connection = mysql.createConnection(sqlremote);
-  let query = `SELECT * FROM Restaurants;`;
+  let query =
+    "SELECT * FROM Restaurants INNER JOIN Categories C on Restaurants.restaurant_category_id = C.category_id;";
   connection.query(query, function (error, results, fields) {
     res.send(results);
     if (error) throw error;

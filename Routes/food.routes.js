@@ -23,8 +23,7 @@ router.get("/random", async (req, res) => {
 });
 router.get("/categories", function (req, res) {
   let connection = mysql.createConnection(sqlremote);
-
-  let query = `select * from categories`;
+  let query = `select * from Categories`;
   connection.query(query, function (error, results, fields) {
     res.send(results);
     if (error) throw error;

@@ -11,7 +11,6 @@ router.get("/all", async (req, res) => {
   });
   connection.end();
 });
-
 router.get("/random", async (req, res) => {
   let connection = mysql.createConnection(sqlremote);
   let query = `call GetRandomProducts();`;
@@ -75,13 +74,22 @@ router.get("/restaurants/all", function (req, res) {
   });
   connection.end();
 });
-
 router.get("/:foodid", function (req, res) {
   let connection = mysql.createConnection(sqlremote);
   let receivedfood = req.params.foodid;
   let query = `call GetFoodInformation(${receivedfood});`;
   connection.query(query, function (error, results, fields) {
     res.send(results[0]);
+    if (error) throw error;
+  });
+  connection.end();
+});
+router.get("/:category/food/all", function (req, res) {
+  let connection = mysql.createConnection(sqlremote);
+  let receivedCategory = req.params.category;
+  let query = `select * from Food where category_id = ${receivedCategory};`;
+  connection.query(query, function (error, results, fields) {
+    res.send(results);
     if (error) throw error;
   });
   connection.end();

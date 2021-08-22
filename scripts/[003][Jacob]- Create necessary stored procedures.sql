@@ -35,10 +35,10 @@ DELIMITER //
 CREATE PROCEDURE AddProductoToShoppingCart(userID INT, foodId INT, foodQty INT )
 BEGIN
 	DECLARE existe BOOL default false;
-	SELECT EXISTS(SELECT * FROM usershoppingcart where food_id = foodId AND user_id = userID)
+	SELECT EXISTS(SELECT * FROM UserShoppingCart where food_id = foodId AND user_id = userID)
 	INTO existe;
     IF existe = TRUE THEN
-    UPDATE usershoppingcart SET food_qty = food_qty + 1 where user_id = userID and food_id = foodId;
+    UPDATE UserShoppingCart SET food_qty = food_qty + 1 where user_id = userID and food_id = foodId;
         ELSE
    INSERT INTO UserShoppingCart(user_id, food_id, food_qty) VALUES (userID, foodId, foodQty);
 END IF;
@@ -58,6 +58,6 @@ DELIMITER ;
 DELIMITER //
 CREATE PROCEDURE GetFoodCategories()
 BEGIN
-	SELECT * FROM categories;
+	SELECT * FROM Categories;
 END //
 DELIMITER ;

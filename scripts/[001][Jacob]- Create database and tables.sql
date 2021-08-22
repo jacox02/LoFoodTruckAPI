@@ -30,15 +30,6 @@ CREATE table if not exists Food(
     FOREIGN KEY (restaurant_id) REFERENCES Restaurants(restaurant_id),
     FOREIGN KEY (category_id) REFERENCES Categories(category_id)
 );
-
-CREATE table if not exists UserShoppingCart(
-    user_id INT NOT NULL,
-    food_id INT NOT NULL,
-    food_qty INT NOT NULL,
-    FOREIGN KEY (user_id) REFERENCES user(user_id),
-    FOREIGN KEY (food_id) REFERENCES food(food_id)
-);
-
 CREATE table if not exists User(
     user_id INT NOT NULL AUTO_INCREMENT,
     user_mail VARCHAR(100) NOT NULL,
@@ -47,3 +38,11 @@ CREATE table if not exists User(
     user_address VARCHAR(400) NOT NULL,
     PRIMARY KEY ( user_id )
 );
+CREATE table if not exists UserShoppingCart(
+    user_id INT NOT NULL,
+    food_id INT NOT NULL,
+    food_qty INT NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES User(user_id),
+    FOREIGN KEY (food_id) REFERENCES Food(food_id)
+);
+

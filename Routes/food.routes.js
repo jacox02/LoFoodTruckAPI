@@ -55,10 +55,10 @@ router.get("/restaurant/:restaurantid/information", async (req, res) => {
   let query = `select R.restaurant_id, R.restaurant_name, R.restaurant_address, R.restaurant_image, C.category_name from Restaurants R JOIN Categories C on R.restaurant_category_id = C.category_id where restaurant_id = ${receivedrestaurant};`;
   let restaurantInfo = {};
   connection.query(query, function (error, results, fields) {
-    restaurantInfo = results;
+    res.send(results);
     if (error) throw error;
   });
-  res.send(restaurantInfo);
+  // res.send(restaurantInfo);
   connection.end();
 });
 router.get("/restaurants/all", function (req, res) {

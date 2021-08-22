@@ -19,6 +19,9 @@ app.use(
     extended: true,
   })
 );
+app.get("/", (req, res) => {
+  res.send("Welcome to LoFoodTruck-API");
+});
 //Endpoint to check if API is running
 app.get("/api/", (req, res) => {
   res.send(true);

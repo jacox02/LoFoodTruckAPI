@@ -105,6 +105,7 @@ router.get("/:user/:food/add/shoppingcart", function (req, res) {
   let query = `call AddProductoToShoppingCart(${userID}, ${foodID}, 1)`;
   connection.query(query, function (error, results, fields) {
     console.log(results);
+    res.send({ message: "Producto anadido satisfactoriamente" });
     if (error) throw error;
   });
 });

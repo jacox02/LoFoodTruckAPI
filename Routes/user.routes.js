@@ -20,14 +20,20 @@ router.get("/user/addtocart/:userid/:foodid/:quantity", (req, res) => {
   connection.end();
 });
 
-router.get("/user/login/", (req, res) => {
-  //Here we gonna handle the body of the request and get the login information
+router.post("/login/", (req, res) => {
+  let query = `SELECT * FROM User WHERE user_mail = '${req.body.userName}' AND user_password = '${req.body.password}'`;
   let connection = mysql.createConnection(sql);
-  //Use passport.authenticate
+  connection.query(query, (error, results, fields) => {
+    res.send(results[0]);
+    if (error) throw error;
+  });
 });
-router.get("/user/signup/", (req, res) => {
-  //Here we gonna handle the body of the request and get the register information
+router.post("/signup/", (req, res) => {
+  let query = `SELECT * FROM User WHERE user_mail = '${req.body.userName}' AND user_password = '${req.body.password}'`;
   let connection = mysql.createConnection(sql);
-  //Use passport.authenticate
+  connection.query(query, (error, results, fields) => {
+    res.send(results[0]);
+    if (error) throw error;
+  });
 });
 module.exports = router;

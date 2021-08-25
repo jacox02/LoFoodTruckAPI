@@ -24,7 +24,7 @@ router.post("/login/", (req, res) => {
   let query = `SELECT * FROM User WHERE user_mail = '${req.body.userName}' AND user_password = '${req.body.password}'`;
   let connection = mysql.createConnection(sql);
   connection.query(query, (error, results, fields) => {
-    res.send(results[0]);
+    res.send(results);
     if (error) throw error;
   });
 });

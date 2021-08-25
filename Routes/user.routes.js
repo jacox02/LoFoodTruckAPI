@@ -1,9 +1,9 @@
 const router = require("express").Router();
 const mysql = require("mysql");
-const { sql } = require("../config/sql");
+const { sql, sqlremote } = require("../config/sql");
 
 router.get("/user/addtocart/:userid/:foodid/:quantity", (req, res) => {
-  let connection = mysql.createConnection(sql);
+  let connection = mysql.createConnection(sqlremote);
 
   let receiveduserid = req.params.userid;
   let receivedfoodid = req.params.foodid;

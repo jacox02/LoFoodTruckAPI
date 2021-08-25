@@ -95,4 +95,29 @@ router.get("/:category/food/all", function (req, res) {
   connection.end();
 });
 
+//Shopping cart see
+router.get("/:user/:food/add/shoppingcart", function (req, res) {
+  let connection = mysql.createConnection(sqlremote);
+
+  let userID = req.params.user;
+  let foodID = req.params.food;
+
+  let query = `call AddProductoToShoppingCart(${userID}, ${foodID}, 1)`;
+  connection.query(query, function (error, results, fields) {
+    console.log(results);
+    if (error) throw error;
+  });
+});
+//Shopping cart see
+router.get("/:user/see/shoppingcart", function (req, res) {
+  let connection = mysql.createConnection(sqlremote);
+  let userID = req.params.user;
+  let query = `call getShoppingCart(${userID});`;
+  connection.query(query, function (error, results, fields) {
+    res.send(results);
+    console.log(results);
+    if (error) throw error;
+  });
+  connection.end();
+});
 module.exports = router;

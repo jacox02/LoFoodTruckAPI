@@ -27,6 +27,7 @@ router.post("/login/", (req, res) => {
     res.send(results);
     if (error) throw error;
   });
+  connection.end();
 });
 router.post("/signup/", (req, res) => {
   let query = `SELECT * FROM User WHERE user_mail = '${req.body.userName}' AND user_password = '${req.body.password}'`;
@@ -35,5 +36,6 @@ router.post("/signup/", (req, res) => {
     res.send(results[0]);
     if (error) throw error;
   });
+  connection.end();
 });
 module.exports = router;

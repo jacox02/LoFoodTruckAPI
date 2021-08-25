@@ -22,7 +22,7 @@ router.get("/user/addtocart/:userid/:foodid/:quantity", (req, res) => {
 
 router.post("/login/", (req, res) => {
   let query = `SELECT * FROM User WHERE user_mail = '${req.body.userName}' AND user_password = '${req.body.password}'`;
-  let connection = mysql.createConnection(sql);
+  let connection = mysql.createConnection(sqlremote);
   connection.query(query, (error, results, fields) => {
     res.send(results);
     if (error) throw error;
@@ -31,7 +31,7 @@ router.post("/login/", (req, res) => {
 });
 router.post("/signup/", (req, res) => {
   let query = `SELECT * FROM User WHERE user_mail = '${req.body.userName}' AND user_password = '${req.body.password}'`;
-  let connection = mysql.createConnection(sql);
+  let connection = mysql.createConnection(sqlremote);
   connection.query(query, (error, results, fields) => {
     res.send(results[0]);
     if (error) throw error;

@@ -21,7 +21,7 @@ router.get("/user/addtocart/:userid/:foodid/:quantity", (req, res) => {
 });
 
 router.post("/login/", (req, res) => {
-  let query = `SELECT * FROM User WHERE user_mail = '${req.body.userName}' AND user_password = '${req.body.password}'`;
+  let query = `SELECT * FROM User WHERE user_mail = '${req.body.userEmail}' AND user_password = '${req.body.password}'`;
   let connection = mysql.createConnection(sqlremote);
   connection.query(query, (error, results, fields) => {
     res.send(results);

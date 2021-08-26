@@ -22,7 +22,7 @@ router.post("/signup/", (req, res) => {
   connection.query(query, (error, results, fields) => {
     console.log(results);
     res.send(results);
-    if (error) throw error;
+    if (error) res.send(error);
   });
   connection.end();
 });

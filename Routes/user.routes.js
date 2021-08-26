@@ -20,6 +20,7 @@ router.post("/signup/", (req, res) => {
   let query = `call signUpUser(${userName},${userEmail},${userPassword})`;
   let connection = mysql.createConnection(sqlremote);
   connection.query(query, (error, results, fields) => {
+    console.log(results);
     res.send(results);
     if (error) throw error;
   });

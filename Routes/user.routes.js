@@ -17,7 +17,7 @@ router.post("/signup/", (req, res) => {
   let userEmail = req.body.userFullName;
   let userPassword = req.body.userPassword;
 
-  let query = `call signUpUser(${userName},${userEmail},${userPassword})`;
+  let query = `call signUpUser('${userName}','${userEmail}','${userPassword}')`;
   let connection = mysql.createConnection(sqlremote);
   connection.query(query, (error, results, fields) => {
     console.log(results);

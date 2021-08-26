@@ -21,8 +21,11 @@ router.post("/signup/", (req, res) => {
   let connection = mysql.createConnection(sqlremote);
   connection.query(query, (error, results, fields) => {
     console.log(results);
-    res.send(results);
-    if (error) res.send(error);
+    if (error) {
+      res.send(error);
+    } else {
+      res.send(results);
+    }
   });
   connection.end();
 });
